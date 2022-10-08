@@ -116,19 +116,18 @@ public class BasicController {
         return "basic/condition";
     }
 
-    @GetMapping("comments")
+    @GetMapping("/comments")
     public String comments(Model model){
         model.addAttribute("data", "Spring Thymeleaf!");
         return "basic/comments";
     }
 
-    @GetMapping("block")
+    @GetMapping("/block")
     public String block(Model model){
         addUsers(model);
         return "basic/block";
     }
-
-
+    
     @Data
     static class User {
         private String username;
