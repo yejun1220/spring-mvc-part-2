@@ -122,7 +122,14 @@ public class BasicController {
         return "basic/comments";
     }
 
-        @Data
+    @GetMapping("block")
+    public String block(Model model){
+        addUsers(model);
+        return "basic/block";
+    }
+
+
+    @Data
     static class User {
         private String username;
         private int age;
