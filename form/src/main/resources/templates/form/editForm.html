@@ -21,19 +21,19 @@
     <form action="item.html" th:action method="post" th:object="${item}">
         <div>
             <label for="id">상품 ID</label>
-            <input type="text" id="id" class="form-control" th:value="*{id}" readonly>
+            <input type="text" id="id" class="form-control" th:field="*{id}" readonly>
         </div>
         <div>
             <label for="itemName">상품명</label>
-            <input type="text" id="itemName" class="form-control" th:value="*{itemName}">
+            <input type="text" id="itemName" class="form-control" th:field="*{itemName}">
         </div>
         <div>
             <label for="price">가격</label>
-            <input type="text" id="price" class="form-control"  th:value="*{price}">
+            <input type="text" id="price" class="form-control"  th:field="*{price}">
         </div>
         <div>
             <label for="quantity">수량</label>
-            <input type="text" id="quantity" class="form-control" th:value="*{quantity}">
+            <input type="text" id="quantity" class="form-control" th:field="*{quantity}">
         </div>
 
         <hr class="my-4">
@@ -64,6 +64,17 @@
                        th:text="${type.description}" class="form-check-label">BOOK</label>
             </div>
         </div>
+
+        <div>
+            <div>배송 방식</div>
+            <select th:field="*{deliveryCode}" class="form-select">
+                <option value="">==배송 방식 선택==</option>
+                <option th:each="deliveryCode : ${deliveryCodes}" th:value="${deliveryCode.code}"
+                        th:text="${deliveryCode.displayName}">FAST
+                </option>
+            </select>
+        </div>
+        <hr class="my-4">
 
         <div class="row">
             <div class="col">
