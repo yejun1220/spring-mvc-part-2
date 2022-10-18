@@ -150,12 +150,17 @@ public class ValidationItemControllerV2 {
         log.info("objectName={}", bindingResult.getObjectName());
         log.info("target={}", bindingResult.getTarget());
 
+        // 앞으로 빼주면 getPrice가 null이어도 에러 메시지를 출력하지 않고 typeMismatch 에러만 발생한다.
+        if(bindingResult.hasErrors()) {
+            log.info("errors = {}", bindingResult);
+            return "validation/v2/addForm";
+        }
+
         if(!StringUtils.hasText(item.getItemName())) {
             bindingResult.rejectValue("itemName", "required");
         }
 //        = 동일
 //        ValidationUtils.rejectIfEmptyOrWhitespace(bindingResult, "itemName", "required");
-
 
         if(item.getPrice() == null || item.getPrice() < 1000 || item.getPrice() > 1000000) {
             bindingResult.rejectValue("price", "range", new Object[]{1000, 1000000}, null);
@@ -171,10 +176,6 @@ public class ValidationItemControllerV2 {
             }
         }
 
-        if(bindingResult.hasErrors()) {
-            log.info("errors = {}", bindingResult);
-            return "validation/v2/addForm";
-        }
 
         Item savedItem = itemRepository.save(item);
         redirectAttributes.addAttribute("itemId", savedItem.getId());
