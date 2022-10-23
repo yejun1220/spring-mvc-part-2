@@ -10,7 +10,7 @@ import javax.validation.constraints.NotNull;
 
 @Data
 // Object error는 ScriptAssert 보다는 validator를 이용하는 것이 좋다.
-@ScriptAssert(lang = "javascript", script = "_this.price * _this.quantity >= 10000", message = "총합이 10000원이 넘어야 합니다.")
+//@ScriptAssert(lang = "javascript", script = "_this.price * _this.quantity >= 10000", message = "총합이 10000원이 넘어야 합니다.")
 public class Item {
 
     private Long id;
